@@ -1,7 +1,7 @@
 use clap::{Parser, Subcommand};
 use prettytable::{Table, row};
 use serde::{Deserialize, Serialize};
-use std::{fs, path::PathBuf, env};
+use std::{env, fs, path::PathBuf};
 
 #[derive(Debug, Serialize, Deserialize, Clone)]
 struct Language {
@@ -14,7 +14,11 @@ struct Language {
 }
 
 #[derive(Debug, Parser)]
-#[clap(name = "kapa", version = "1.0", about = "Programming language information tool")]
+#[clap(
+    name = "kapa",
+    version = "1.0",
+    about = "Programming language information tool"
+)]
 struct Cli {
     #[clap(subcommand)]
     command: Commands,
@@ -24,25 +28,25 @@ struct Cli {
 enum Commands {
     /// List all languages
     List,
-    
+
     /// Search for a specific language
     Search {
         #[clap(help = "Language name to search for")]
         name: String,
     },
-    
+
     /// Display languages created in a specific year
     Year {
         #[clap(help = "Year to filter languages by")]
         year: u32,
     },
-    
+
     /// Display languages by creator
     Creator {
         #[clap(help = "Creator name to filter by")]
         name: String,
     },
-    
+
     /// Display statistics
     Stats,
 }
@@ -61,15 +65,15 @@ fn load_languages() -> Vec<Language> {
         // System data directory
         PathBuf::from("/usr/local/share/kapa/languages.json"),
         // User data directory
-        dirs::data_local_dir()
-            .unwrap()
-            .join("kapa/languages.json"),
+        dirs::data_local_dir().unwrap().join("kapa/languages.json"),
     ];
 
-    let data = paths.iter()
+    let data = paths
+        .iter()
         .find_map(|path| fs::read_to_string(path).ok())
         .unwrap_or_else(|| {
-            let searched_paths = paths.iter()
+            let searched_paths = paths
+                .iter()
                 .map(|p| p.display().to_string())
                 .collect::<Vec<_>>()
                 .join("\n- ");
@@ -85,9 +89,9 @@ fn load_languages() -> Vec<Language> {
 
 fn print_languages_table(languages: &[Language]) {
     let mut table = Table::new();
-    
+
     table.add_row(row![bFg=> "Name", "Year", "Creators", "Paradigm", "Typing"]);
-    
+
     for lang in languages {
         table.add_row(row![
             lang.name,
@@ -97,7 +101,7 @@ fn print_languages_table(languages: &[Language]) {
             lang.typing
         ]);
     }
-    
+
     table.printstd();
 }
 
@@ -109,66 +113,70 @@ fn main() {
         Commands::List => {
             println!("Displaying all programming languages:");
             print_languages_table(&languages);
-        },
+        }
         Commands::Search { name } => {
             let filtered: Vec<_> = languages
                 .iter()
                 .filter(|lang| lang.name.to_lowercase().contains(&name.to_lowercase()))
                 .cloned()
                 .collect();
-            
+
             if filtered.is_empty() {
                 println!("No languages found matching '{}'", name);
             } else {
                 println!("Search results for '{}':", name);
                 print_languages_table(&filtered);
             }
-        },
+        }
         Commands::Year { year } => {
             let filtered: Vec<_> = languages
                 .iter()
                 .filter(|lang| lang.year == year)
                 .cloned()
                 .collect();
-            
+
             if filtered.is_empty() {
                 println!("No languages created in {}", year);
             } else {
                 println!("Languages created in {}:", year);
                 print_languages_table(&filtered);
             }
-        },
+        }
         Commands::Creator { name } => {
             let filtered: Vec<_> = languages
                 .iter()
-                .filter(|lang| lang.creators.iter().any(|c| c.to_lowercase().contains(&name.to_lowercase())))
+                .filter(|lang| {
+                    lang.creators
+                        .iter()
+                        .any(|c| c.to_lowercase().contains(&name.to_lowercase()))
+                })
                 .cloned()
                 .collect();
-            
+
             if filtered.is_empty() {
                 println!("No languages found created by '{}'", name);
             } else {
                 println!("Languages created by '{}':", name);
                 print_languages_table(&filtered);
             }
-        },
+        }
         Commands::Stats => {
             let count = languages.len();
             let earliest = languages.iter().min_by_key(|l| l.year).unwrap();
             let latest = languages.iter().max_by_key(|l| l.year).unwrap();
-            
+
             println!("Programming Language Statistics:");
             println!("- Total languages: {}", count);
             println!("- Earliest language: {} ({})", earliest.name, earliest.year);
             println!("- Latest language: {} ({})", latest.name, latest.year);
-            
+
             let mut paradigm_counts = std::collections::HashMap::new();
             for lang in &languages {
                 for paradigm in &lang.paradigm {
                     *paradigm_counts.entry(paradigm).or_insert(0) += 1;
                 }
             }
-            
+
             println!("\nParadigm Counts:");
             let mut table = Table::new();
             table.add_row(row![bFg=> "Paradigm", "Count"]);
@@ -176,6 +184,6 @@ fn main() {
                 table.add_row(row![paradigm, count]);
             }
             table.printstd();
-        },
+        }
     }
 }
