@@ -1,0 +1,27 @@
+[package]
+name = "kapa"
+version = "0.1.0"
+authors = ["Gabriel Okemwa <gabrielokemwa83@gmail.com>"]
+description = "A CLI tool showing programming language information"
+license = "MIT"
+repository = "https://github.com/Okemwag/kapa"
+homepage = "https://github.com/Okemwag/kapa"
+documentation = "https://docs.rs/kapa"
+keywords = ["cli", "programming", "languages", "developer-tools"]
+categories = ["command-line-utilities", "development-tools"]
+readme = "README.md"
+edition = "2024"
+
+
+
+include = [
+    "data/languages.json",
+    "src/*.rs"
+]
+
+[dependencies]
+clap = { version = "4.0", features = ["derive"] }
+prettytable-rs = "0.10"
+serde = { version = "1.0", features = ["derive"] }
+serde_json = "1.0"
+dirs = "6.0.0"

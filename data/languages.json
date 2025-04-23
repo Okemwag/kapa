@@ -1,0 +1,114 @@
+[
+    {
+        "name": "C",
+        "year": 1972,
+        "creators": ["Dennis Ritchie"],
+        "paradigm": ["procedural", "imperative", "structured"],
+        "typing": "static",
+        "influenced_by": ["B", "ALGOL", "Assembly"]
+    },
+    {
+        "name": "Python",
+        "year": 1991,
+        "creators": ["Guido van Rossum"],
+        "paradigm": ["object-oriented", "imperative", "functional"],
+        "typing": "dynamic",
+        "influenced_by": ["ABC", "Modula-3", "C", "Lisp"]
+    },
+    {
+        "name": "Rust",
+        "year": 2010,
+        "creators": ["Graydon Hoare", "Mozilla"],
+        "paradigm": ["multi-paradigm", "functional", "concurrent"],
+        "typing": "static",
+        "influenced_by": ["C++", "Haskell", "OCaml", "Cyclone"]
+    },
+    {
+        "name": "JavaScript",
+        "year": 1995,
+        "creators": ["Brendan Eich"],
+        "paradigm": ["event-driven", "functional", "object-oriented"],
+        "typing": "dynamic",
+        "influenced_by": ["Self", "Scheme", "Java"]
+    },
+    {
+        "name": "Go",
+        "year": 2009,
+        "creators": ["Robert Griesemer", "Rob Pike", "Ken Thompson"],
+        "paradigm": ["imperative", "structured"],
+        "typing": "static",
+        "influenced_by": ["C", "Pascal", "Oberon"]
+    },
+    {
+        "name": "Java",
+        "year": 1995,
+        "creators": ["James Gosling", "Sun Microsystems"],
+        "paradigm": ["object-oriented", "structured", "imperative"],
+        "typing": "static",
+        "influenced_by": ["C++", "Smalltalk", "Objective-C"]
+    },
+    {
+        "name": "Kotlin",
+        "year": 2011,
+        "creators": ["JetBrains"],
+        "paradigm": ["object-oriented", "functional"],
+        "typing": "static",
+        "influenced_by": ["Java", "Scala", "Groovy"]
+    },
+    {
+        "name": "Swift",
+        "year": 2014,
+        "creators": ["Apple Inc."],
+        "paradigm": ["protocol-oriented", "object-oriented", "functional"],
+        "typing": "static",
+        "influenced_by": ["Objective-C", "Rust", "Haskell", "Python"]
+    },
+    {
+        "name": "Ruby",
+        "year": 1995,
+        "creators": ["Yukihiro Matsumoto"],
+        "paradigm": ["object-oriented", "imperative", "functional"],
+        "typing": "dynamic",
+        "influenced_by": ["Perl", "Smalltalk", "Eiffel", "Ada"]
+    },
+    {
+        "name": "TypeScript",
+        "year": 2012,
+        "creators": ["Microsoft", "Anders Hejlsberg"],
+        "paradigm": ["object-oriented", "functional"],
+        "typing": "static",
+        "influenced_by": ["JavaScript", "C#", "Java"]
+    },
+    {
+        "name": "C#",
+        "year": 2000,
+        "creators": ["Anders Hejlsberg", "Microsoft"],
+        "paradigm": ["object-oriented", "structured", "functional", "imperative"],
+        "typing": "static",
+        "influenced_by": ["C++", "Java", "Delphi"]
+    },
+    {
+        "name": "PHP",
+        "year": 1995,
+        "creators": ["Rasmus Lerdorf"],
+        "paradigm": ["imperative", "object-oriented", "procedural"],
+        "typing": "dynamic",
+        "influenced_by": ["C", "Perl"]
+    },
+    {
+        "name": "Haskell",
+        "year": 1990,
+        "creators": ["Simon Peyton Jones", "Paul Hudak", "Philip Wadler"],
+        "paradigm": ["functional", "lazy", "pure"],
+        "typing": "static",
+        "influenced_by": ["Miranda", "ML"]
+    },
+    {
+        "name": "Scala",
+        "year": 2004,
+        "creators": ["Martin Odersky"],
+        "paradigm": ["object-oriented", "functional"],
+        "typing": "static",
+        "influenced_by": ["Java", "Haskell", "Lisp"]
+    }
+]
